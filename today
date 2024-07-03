@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#./update
+
+DAYS="$(pwd)/_days"
+TODAY="$DAYS/$(date +"%Y-%m-%d").md"
+DAILY=./daily.md
+
+if [[ ! -e $TODAY ]]; then
+  LAST=
+  I=1
+  while [[ $I -lt 30 ]]; do
+    NAME="$DAYS/$(date -d "-$I days" +"%Y-%m-%d").md"
+    echo $NAME
+    if [[ -e $NAME ]]; then
+      LAST=$NAME
+      break;
+    fi
+    I=$((I+1))
+  done
+
+  cat $LAST $DAILY \
+    | sed '/[+]/s/+/\ /' \
+    | grep -v "\[[Xx-]\]" \
+    | sort \
+    | uniq \
+    > $TODAY
+fi
+
+ln -fs $TODAY ./today.md
+vim ./today.md

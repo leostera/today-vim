@@ -1,0 +1,18 @@
+#!/bin/bash
+
+DAYS="$(pwd)/_days"
+WHEN=$1
+I=$WHEN
+while [[ $I -ge 0  ]]; do
+  NAME=$(date -d "-$I days" +"%Y-%m-%d")
+  FILE="$DAYS/$NAME.md"
+  if [[ -e $FILE ]]; then
+    DONE=$(cat $FILE | grep "\[[Xx-]\]" | sort | wc -l)
+    if [[ $DONE -gt 0 ]]; then
+      echo "Done on $NAME ($DONE)"
+      cat $FILE | grep "\[[Xx-]\]" | sort
+      echo ""
+    fi
+  fi
+  I=$((I-1))
+done

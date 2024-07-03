@@ -1,0 +1,19 @@
+#!/bin/bash
+
+DAYS="$(pwd)/_days"
+WHEN=$1
+I=0
+while [[ $I -lt $WHEN ]]; do
+  NAME=$(date -d "-$I days" +"%Y-%m-%d")
+  FILE="$DAYS/$NAME.md"
+  if [[ -e $FILE ]]; then
+    DONE=$(cat $FILE | grep "\[[\ ]\]" | sort | wc -l)
+    if [[ $DONE -gt 0 ]]; then
+      echo "Pending from $NAME ($DONE)"
+      cat $FILE | grep "\[[\ ]\]" | sort | uniq
+      echo ""
+    fi
+  fi
+  I=$((I+1))
+done
+
