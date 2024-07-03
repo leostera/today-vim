@@ -1,8 +1,5 @@
- - [ ] 🏋  Morning Freeletics
- - [-] 🏋  Morning Lifts
+ - [ ] 🏋  Morning Lifts
  - [-] 🏋  Morning Yoga
  - [ ] 🏠 Shower
  - [ ] 📝 Write Something
  - [-] 📖 Learn You Some Swedish
- - [-] 🏋  Pick Tomorrow's Mana Recipe
- - [-] 🏋  Prepare Today's Mana
